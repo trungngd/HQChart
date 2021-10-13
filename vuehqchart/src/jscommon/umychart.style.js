@@ -33,8 +33,8 @@ var BLACK_STYLE=
     //  SelectRectAlpha: 0.06;                  //透明度
 
     //K线颜色
-    UpBarColor: "rgb(238,21,21)",   //上涨
-    DownBarColor: "rgb(25,158,0)",  //下跌
+    UpBarColor: "#00C8BC",   //上涨
+    DownBarColor: "#E5544B",  //下跌
     UnchagneBarColor: "rgb(228,228,228)", //平盘
     EmptyBarBGColor:'rgb(0,0,0)',   //空心柱子背景色
 
