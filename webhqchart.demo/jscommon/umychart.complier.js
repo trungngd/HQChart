@@ -9586,7 +9586,7 @@ function JSDraw(errorHandler,symbolData)
     {
         let drawData={ Text:{ Title:text, Color:textcolor }, Line:{ Type:linetype, Color:linecolor } };
         if (fontSize<=0) fontSize=12;
-        drawData.Text.Font=fontSize*GetDevicePixelRatio()+'px 微软雅黑'; 
+        drawData.Text.Font=fontSize*GetDevicePixelRatio()+'px sans-serif'; 
 
         let result={DrawData:null, DrawType:'DRAWTEXT_LINE'};
         

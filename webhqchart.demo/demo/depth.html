@@ -1,0 +1,197 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+
+<title>深度图</title>  
+    <!-- 加载资源 -->
+    <link rel="stylesheet" href="../jscommon/umychart.resource/css/tools.css" />
+    <link rel="stylesheet" href="../jscommon/umychart.resource/font/iconfont.css" />
+</head>  
+<body>
+    <div id="kline" style="width: 900px;height:400px;position: relative;"></div>
+
+    <script src="content/js/jquery.min.js"></script>
+    <script src="content/js/webfont.js"></script>
+    <script src='../jscommon/umychart.console.js'></script>     <!-- 日志输出 -->
+    <script src="../jscommon/umychart.network.js"></script>     <!-- 网络请求分装 -->
+    <script src="../jscommon/umychart.js"></script>             <!-- K线图形 -->
+    <script src="../jscommon/umychart.complier.js"></script>    <!-- 麦语言解析执行器 -->
+    <script src="../jscommon/umychart.index.data.js"></script>  <!-- 基础指标库 -->
+    <script src="../jscommon/umychart.style.js"></script>       <!-- 白色风格和黑色风格配置信息 -->
+
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.min.js" integrity="sha512-ZqQWGugamKhlSUqM1d/HMtwNG+hITmd/ptoof91lt5ojFZ+2bKlkvlzkmnDIrnikDY+UDVZVupLf6MNbuhtFSw==" crossorigin="anonymous"></script>
+    -->
+    
+    <script src="./localdata/depth_test.js"></script>
+    <script>
+
+        //简单的把K线控件封装下
+        function KLineChart(divKLine)
+        {
+            this.DivKLine=divKLine;
+            this.Chart=JSChart.Init(divKLine);   //把K线图绑定到一个Div上
+            this.WSUrl='wss://stream.binance.com/stream',
+            this.Socket=null,
+
+            this.ClearDivDOM=function()     
+            {
+                var childList = this.DivKLine.childNodes;
+                for(var i in childList)
+                {
+                    this.DivKLine.removeChild(childList[i]);
+                }
+            }
+
+            //K线配置信息
+            this.Option= {
+                Type:'深度图',   //创建图形类型
+                Language: 'EN',
+                EnableZoomUpDown:
+                {
+                    // Wheel:true,
+                    // Keyboard:true,
+                    // Touch:true,
+                },
+
+                
+                Symbol:'BTCBUSD.bit',
+                IsAutoUpdate:true,       //是自动更新数据
+                AutoUpdateFrequency:10000,   //数据更新频率
+                CorssCursorTouchEnd:true,
+                EnableScrollUpDown:true,
+
+                MaxVolRate:1.2,
+                
+                CorssCursorInfo: { HPenType:0, VPenType:1, IsShowTooltip:true },
+    
+                Listener:
+                {
+                    //KeyDown:false,
+                    //Wheel:false
+                },
+
+                
+                Border: //边框
+                {
+                    Left:1,         //左边间距
+                    Right:40,       //右边间距
+                    Bottom:25,      //底部间距
+                    Top:1           //顶部间距
+                },
+
+                //框架设置
+                Frame: { SplitCount:6, IsShowLeftText:false , XLineType:3},
+                
+            };
+                 
+            this.Create=function()  //创建图形
+            {
+                var self=this;
+                //$(window).resize(function() { self.OnSize( {Type:1} ); });    //绑定窗口大小变化事件
+                $(window).resize(function() { self.OnSize( ); });    //绑定窗口大小变化事件
+
+                var blackStyle=HQChartStyle.GetStyleConfig(STYLE_TYPE_ID.BLACK_ID); //读取黑色风格配置
+                //blackStyle.DRAWICON={ MinSize:20 , MaxSize:60};
+                JSChart.SetStyle(blackStyle);
+                this.DivKLine.style.backgroundColor=blackStyle.BGColor; //设置最外面的div背景
+
+                MARKET_SUFFIX_NAME.GetBITDecimal=(symbol)=> { return this.GetBITDecimal(symbol); }
+                
+                this.Option.NetworkFilter=(data, callback)=> { this.NetworkFilter(data, callback); };
+                this.OnSize();  //全屏
+
+                var windowWidth = $(window).width();
+                if (windowWidth<=420)   //手机小屏左右不显示坐标
+                    this.Option.CorssCursorTouchEnd=true;
+
+                this.Chart.SetOption(this.Option);  //设置K线配置
+
+                this.Chart.AddEventCallback(
+                {
+                    event:JSCHART_EVENT_ID.ON_DRAW_DEPTH_TOOLTIP,
+                    callback:(event, data, chart)=>{ this.OnDrawTooltip(event, data, chart);}
+                });
+            }
+
+            this.OnDrawTooltip=function(event, data, chart)
+            {
+                console.log("[KLineChart::OnDrawTooltip], data, chart", data, chart);
+            }
+
+            this.GetBITDecimal=function(symbol)
+            {
+                if (symbol=="ADXBTC.BIT") return 8;
+
+                return 4;
+            }
+
+            this.OnSize=function(option)  //自适应大小调整
+            {
+                var height= $(window).height()-30;
+                var width = $(window).width();
+                this.DivKLine.style.top='0px';
+                this.DivKLine.style.left='0px';
+                this.DivKLine.style.width=width+'px';
+                this.DivKLine.style.height=height+'px';
+                this.Chart.OnSize(option);
+            }
+
+            this.ChangeSymbol=function(symbol)
+            {
+                this.Chart.ChangeSymbol(symbol);
+            }
+
+            this.NetworkFilter=function(data, callback)
+            {
+                console.log("[KLineChart::NetworkFilter", data );
+
+                switch(data.Name)
+                {
+                    case "DepthChartContainer::RequestDepthData":
+                        this.RequestDepthData(data, callback);
+                        break;
+                }
+            }
+
+            this.TestID=0;
+            this.RequestDepthData=function(data, callback)
+            {
+                var symbol=data.Request.Data.symbol.toUpperCase();
+                
+                this.TestID++;
+                if (this.TestID%2==0) var recvData=DEPTH_TEST;
+                else var recvData=DEPTH_TEST2;
+
+                var hqChartData=
+                { 
+                    code:0, 
+                    asks:recvData.asks,     //卖盘
+                    bids:recvData.bids,     //买盘 
+                    datatype:"snapshot"     //全量数据  
+                }; 
+                callback(hqChartData);
+            } 
+        }
+
+        $(function () 
+        {
+            WebFont.load({ custom: { families: ['iconfont'] } });   //预加载下iconfont资源
+            //LoadCustomIndex();
+
+            var klineControl=new KLineChart(document.getElementById('kline'));
+            klineControl.Create();
+        })
+    </script>  
+</body>  
+</html>
+
+
+
+<style>
+
+    
+</style>

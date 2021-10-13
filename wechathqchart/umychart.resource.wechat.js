@@ -71,8 +71,8 @@ function JSChartResource()
     this.FrameLatestPrice = 
     {
         TextColor: 'rgb(255,255,255)',   //最新价格文字颜色
-        UpBarColor: "rgb(238,21,21)",    //上涨
-        DownBarColor: "rgb(25,158,0)",   //下跌
+        UpBarColor: "#00C8BC",    //上涨
+        DownBarColor: "#E5544B",   //下跌
         UnchagneBarColor: "rgb(0,0,0)",   //平盘
         BGAlpha: 0.6
     };

@@ -3709,7 +3709,7 @@ function ChartSplashPaint()
     this.Font = g_JSChartResource.DefaultTextFont;            //字体
     this.TextColor = g_JSChartResource.DefaultTextColor;      //文本颜色
     this.IsEnableSplash = false;
-    this.SplashTitle = '数据加载中.....';
+    this.SplashTitle = 'Loading........';
     this.HQChart;
 
     this.EnableSplash=function(bEnable)

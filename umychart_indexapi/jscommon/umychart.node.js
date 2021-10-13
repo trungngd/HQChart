@@ -5889,7 +5889,7 @@ function JSChartContainer(uielement, OffscreenElement)
     this.ChartCorssCursor;                          //十字光标
     this.IsClickShowCorssCursor=false;              //手势点击显示十字光标
     this.ChartSplashPaint=null;                     //等待提示
-    this.LoadDataSplashTitle="数据加载中";           //下载数据提示信息
+    this.LoadDataSplashTitle="Loading...";           //下载数据提示信息
     if (OffscreenElement) 
     {
         this.Canvas=OffscreenElement.getContext("2d");
@@ -35034,7 +35034,7 @@ function ChartSplashPaint()
     this.Font=g_JSChartResource.DefaultTextFont;            //字体
     this.TextColor=g_JSChartResource.DefaultTextColor;      //文本颜色
     this.IsEnableSplash=false;
-    this.SplashTitle='数据加载中';
+    this.SplashTitle='Loading...';
     this.HQChart;
 
     this.EnableSplash=function(bEnable)

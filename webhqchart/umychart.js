@@ -6,6 +6,7 @@
    开源项目 https://github.com/jones2000/HQChart
  
    jones_2000@163.com
+   trungnd
 
    封装行情类图形控件 (H5版本)
 */
@@ -1937,7 +1938,7 @@ function JSChartContainer(uielement, OffscreenElement)
     this.ChartCorssCursor;                          //十字光标
     this.IsClickShowCorssCursor=false;              //手势点击显示十字光标
     this.ChartSplashPaint=null;                     //等待提示
-    this.LoadDataSplashTitle="数据加载中";           //下载数据提示信息
+    this.LoadDataSplashTitle="Loading...";           //下载数据提示信息
     if (OffscreenElement) 
     {
         this.Canvas=OffscreenElement.getContext("2d");
@@ -3823,12 +3824,13 @@ function JSChartContainer(uielement, OffscreenElement)
 
         if (this.ChartCorssCursor)
         {
-            var crossButton=this.ChartCorssCursor.PtInButton(x,y);
-            if (crossButton)
-            {
-                mouseStatus={ Cursor:"pointer", Name:"CorssCursorButton"};
-                JSConsole.Chart.Log("[JSChartContainer::OnMouseMove] cross cursor button ", crossButton);
-            }
+            console.log('mouse chart', x,y)
+            // var crossButton=this.ChartCorssCursor.PtInButton(x,y);
+            // if (crossButton)
+            // {
+            //     mouseStatus={ Cursor:"pointer", Name:"CorssCursorButton"};
+            //     JSConsole.Chart.Log("[JSChartContainer::OnMouseMove] cross cursor button ", crossButton);
+            // }
         }
 
         if (this.Frame.PtInFrameBottom(x,y))
@@ -31129,7 +31131,7 @@ function ChartSplashPaint()
     this.Font=g_JSChartResource.DefaultTextFont;            //字体
     this.TextColor=g_JSChartResource.DefaultTextColor;      //文本颜色
     this.IsEnableSplash=false;
-    this.SplashTitle='数据加载中';
+    this.SplashTitle='Loading...';
     this.HQChart;
 
     this.EnableSplash=function(bEnable)

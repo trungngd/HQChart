@@ -3,7 +3,7 @@
 <head>  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>币K线图</title>  
+<title>Kline</title>  
     <!-- 加载资源 -->
     <link rel="stylesheet" href="content/css/tools.css" />
     <link rel="stylesheet" href="../jscommon/umychart.resource/font/iconfont.css" />
@@ -28,87 +28,91 @@
     
     <script>
 
-        //简单的把K线控件封装下
+        //Simply encapsulate the K-line control
         function KLineChart(divKLine)
         {
             this.DivKLine=divKLine;
-            this.Chart=JSChart.Init(divKLine);   //把K线图绑定到一个Div上
+            this.Chart=JSChart.Init(divKLine); //Bind the K-line chart to a Div
             var self=this;
-            //K线配置信息
+            //K line configuration information
             this.Option= {
                 Type:'历史K线图',   //创建图形类型
-                Language:'EN',   //创建图形类型
+                Language:'EN', //Create graphic type
                 
-                Windows: //窗口指标
+                Windows: //Window indicator
                 [
                     {Index:"MA", Modify:false,Change:false},
-                    {Index:"RSI", Modify:false,Change:false}, 
-                ], 
+                    {Index:"RSI", Modify:false,Change:false},
+                ],
 
                 
                 Symbol:'BTCUSDT.BIT',
                 //Symbol:'600000.sh',
-                IsAutoUpdate:true,          //是自动更新数据
-                AutoUpdateFrequency:5000,   //数据更新频率
-    
-                IsShowRightMenu:true,          //右键菜单
-                IsShowCorssCursorInfo:true,    //是否显示十字光标的刻度信息
+                IsAutoUpdate:true, //is auto update data
+                AutoUpdateFrequency:5000, //Data update frequency
+                EnableYDrag: true,
+                IsShowRightMenu:true, //Right-click menu
+                IsShowCorssCursorInfo:true, //Whether to display the scale information of the cross cursor
                 //CorssCursorTouchEnd:true,
+                // CorssCursorInfo:{ Left:1, Right:1, Bottom:1, IsShowCorss:true, IsShowClose: true, PressTime:300, HPenType:0, VPenType:1, IsShowTooltip:true },  //十字光标刻度设置
+                CorssCursorInfo:{IsShowCorss:true, IsShowClose:true, HPenType:0, VPenType:1, IsShowTooltip:true },  //十字光标刻度设置
+
+                EnableScrollUpDown: true,
+                EnableZoomUpDown: true,
     
-                KLine:  //K线设置
+                KLine: //K line setting
                 {
-                    DragMode:1,                 //拖拽模式 0 禁止拖拽 1 数据拖拽 2 区间选择
-                    Right:0,                    //复权 0 不复权 1 前复权 2 后复权
-                    Period:0,                   //周期 0 日线 1 周线 2 月线 3 年线 
-                    MaxReqeustDataCount:1000,   //数据个数
-                    MaxRequestMinuteDayCount:10, //分钟数据取5天
-                    PageSize:50,               //一屏显示多少数据
-                    //Info:["互动易","大宗交易",'龙虎榜',"调研","业绩预告","公告"],       //信息地雷
-                    IsShowTooltip:true,                 //是否显示K线提示信息
+                    DragMode: 1, //Drag mode 0 Drag and drop is prohibited 1 Data drag and drop 2 Interval selection
+                    Right:0, //Restore rights 0 No restoration 1 Before restoration 2 After restoration
+                    Period:0, //Period 0 daily line 1 week line 2 month line 3 year line
+                    MaxReqeustDataCount:1000, //Number of data
+                    MaxRequestMinuteDayCount: 10, //Minute data takes 5 days
+                    PageSize:50, //How much data is displayed on one screen
+                    //Info:["Easy Interactive","Block Trade",'Dragon and Tiger List',"Research","Performance Forecast","Announcement"], //Information Landmine
+                    IsShowTooltip:false, //Whether to display K-line prompt information
                 },
     
-                KLineTitle: //标题设置
+                KLineTitle: //Title setting
                 {
-                    IsShowName:true,       //不显示股票名称
-                    IsShowSettingInfo:true //不显示周期/复权
+                    IsShowName:true, //Do not display the stock name
+                    IsShowSettingInfo:true //Do not display cycle/recovery
                 },
 
-                NetworkFilter:function(data, callback) { self.NetworkFilter(data, callback); } ,   //绑定网络协议回调
+                NetworkFilter:function(data, callback) {self.NetworkFilter(data, callback);}, //Bind network protocol callback
     
-                Border: //边框
+                Border: //Border
                 {
-                    Left:5,         //左边间距
-                    Right:50,       //右边间距
-                    Bottom:25,      //底部间距
-                    Top:25          //顶部间距
+                    Left:0, //Left margin
+                    Right: 50, //Right margin
+                    Bottom: 25, //Bottom spacing
+                    Top:25 //top spacing
                 },
                 
-                Frame:  //子框架设置
+                Frame: //Sub-frame settings
                 [
                     {SplitCount:3,StringFormat:0, IsShowLeftText:false},
                     {SplitCount:2,StringFormat:0, IsShowLeftText:false},
                     {SplitCount:2,StringFormat:0, IsShowLeftText:false}
                 ],
 
-                ExtendChart:    //扩展图形
+                ExtendChart: //Extended graphics
                 [
-                    //{Name:'KLineTooltip' }  //手机端tooltip
+                    {Name:'KLineTooltip'} //tooltip on mobile phone
                 ],
             };
                  
-            this.Create=function()  //创建图形
+            this.Create=function() //Create graphics
             {
                 var self=this;
-                $(window).resize(function() { self.OnSize(); });    //绑定窗口大小变化事件
+                $(window).resize(function() {self.OnSize(); }); //Binding window size change event
 
-                var blackStyle=HQChartStyle.GetStyleConfig(STYLE_TYPE_ID.BLACK_ID); //读取黑色风格配置
+                var blackStyle=HQChartStyle.GetStyleConfig(STYLE_TYPE_ID.BLACK_ID); //Read black style configuration
                 JSChart.SetStyle(blackStyle);
-                this.DivKLine.style.backgroundColor=blackStyle.BGColor; //设置最外面的div背景
+                this.DivKLine.style.backgroundColor=blackStyle.BGColor; //Set the outermost div background
 
-                this.OnSize();  //让K线全屏
-                this.Chart.SetOption(this.Option);  //设置K线配置
+                this.OnSize(); //Make K line full screen
+                this.Chart.SetOption(this.Option); //Set K line configuration
             }
-
 
             this.OnSize=function()  //自适应大小调整
             {

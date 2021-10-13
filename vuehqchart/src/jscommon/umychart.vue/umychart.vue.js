@@ -5947,7 +5947,7 @@ function JSChartContainer(uielement, OffscreenElement)
     this.ChartCorssCursor;                          //十字光标
     this.IsClickShowCorssCursor=false;              //手势点击显示十字光标
     this.ChartSplashPaint=null;                     //等待提示
-    this.LoadDataSplashTitle="数据加载中";           //下载数据提示信息
+    this.LoadDataSplashTitle="Loading...";           //下载数据提示信息
     if (OffscreenElement) 
     {
         this.Canvas=OffscreenElement.getContext("2d");
@@ -8836,7 +8836,7 @@ function JSChartContainer(uielement, OffscreenElement)
     this.SaveToImage = function (format,colorGB) 
     {
         if (this.UIElement.width<=0 || this.UIElement.height<=0) return null;
-        if (this.ChartSplashPaint && this.ChartSplashPaint.IsEnableSplash) return null; // 数据加载中不能保存
+        if (this.ChartSplashPaint && this.ChartSplashPaint.IsEnableSplash) return null; // Loading...不能保存
 
         JSConsole.Chart.Log('[JSChartContainer::SaveToImage]', this.UIElement);
         var clrBG='rgb(255,255,255)';
@@ -35139,7 +35139,7 @@ function ChartSplashPaint()
     this.Font=g_JSChartResource.DefaultTextFont;            //字体
     this.TextColor=g_JSChartResource.DefaultTextColor;      //文本颜色
     this.IsEnableSplash=false;
-    this.SplashTitle='数据加载中';
+    this.SplashTitle='Loading...';
     this.HQChart;
 
     this.EnableSplash=function(bEnable)
@@ -85579,8 +85579,8 @@ var BLACK_STYLE=
     //  SelectRectAlpha: 0.06;                  //透明度
 
     //K线颜色
-    UpBarColor: "rgb(238,21,21)",   //上涨
-    DownBarColor: "rgb(25,158,0)",  //下跌
+    UpBarColor: "#00C8BC",   //上涨
+    DownBarColor: "#E5544B",  //下跌
     UnchagneBarColor: "rgb(228,228,228)", //平盘
     EmptyBarBGColor:'rgb(0,0,0)',   //空心柱子背景色
 

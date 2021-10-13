@@ -115,7 +115,7 @@ function JSChart(divElement, bOffscreen)
         chart.ChartCorssCursor.TextHeight*=pixelTatio;  //十字光标文本信息高度
     }
 
-    //历史K线图
+   // Historical candlestick chart
     this.CreateKLineChartContainer=function(option)
     {
         var chart=null;
@@ -247,7 +247,7 @@ function JSChart(divElement, bOffscreen)
             }
         }
 
-        //取消显示十字光标刻度信息
+        //Cancel the display of cross cursor scale information
         if (option.IsCorssOnlyDrawKLine===true) chart.ChartCorssCursor.IsOnlyDrawKLine=option.IsCorssOnlyDrawKLine;
         if (option.CorssCursorTouchEnd===true) chart.CorssCursorTouchEnd = option.CorssCursorTouchEnd;
         if (option.IsClickShowCorssCursor==true) chart.IsClickShowCorssCursor=option.IsClickShowCorssCursor;
@@ -258,8 +258,8 @@ function JSChart(divElement, bOffscreen)
             if (!isNaN(option.CorssCursorInfo.Right)) chart.ChartCorssCursor.ShowTextMode.Right=option.CorssCursorInfo.Right;
             if (!isNaN(option.CorssCursorInfo.Bottom)) chart.ChartCorssCursor.ShowTextMode.Bottom=option.CorssCursorInfo.Bottom;
             if (option.CorssCursorInfo.IsShowCorss===false) chart.ChartCorssCursor.IsShowCorss=option.CorssCursorInfo.IsShowCorss;
-            if (option.CorssCursorInfo.IsShowClose == true) chart.ChartCorssCursor.IsShowClose = option.CorssCursorInfo.IsShowClose;    //Y轴显示收盘价
-            if (option.CorssCursorInfo.PressTime) chart.PressTime=option.CorssCursorInfo.PressTime; //长按显示十字光标的时间
+            if (option.CorssCursorInfo.IsShowClose == true) chart.ChartCorssCursor.IsShowClose = option.CorssCursorInfo.IsShowClose; //Y-axis shows the closing price
+            if (option.CorssCursorInfo.PressTime) chart.PressTime=option.CorssCursorInfo.PressTime; //Long press the time to display the cross cursor
             if (IFrameSplitOperator.IsNumber(option.CorssCursorInfo.HPenType)) chart.ChartCorssCursor.HPenType=option.CorssCursorInfo.HPenType;
             if (option.CorssCursorInfo.VPenType>0) chart.ChartCorssCursor.VPenType=option.CorssCursorInfo.VPenType;
             if (IFrameSplitOperator.IsNumber(item.VLineType)) chart.ChartCorssCursor.VLineType=item.VLineType;
@@ -269,7 +269,7 @@ function JSChart(divElement, bOffscreen)
             if (item.RightButton)
             {
                 if (IFrameSplitOperator.IsBool(item.RightButton.Enable)) chart.ChartCorssCursor.RightButton.Enable=item.RightButton.Enable;
-            } 
+            }
         }
 
         //保存十字光标文字高度
@@ -1937,7 +1937,7 @@ function JSChartContainer(uielement, OffscreenElement)
     this.ChartCorssCursor;                          //十字光标
     this.IsClickShowCorssCursor=false;              //手势点击显示十字光标
     this.ChartSplashPaint=null;                     //等待提示
-    this.LoadDataSplashTitle="数据加载中";           //下载数据提示信息
+    this.LoadDataSplashTitle="Loading...";           //下载数据提示信息
     if (OffscreenElement) 
     {
         this.Canvas=OffscreenElement.getContext("2d");
@@ -15086,7 +15086,7 @@ function ChartKLine()
 
     this.ClassName='ChartKLine';    //类名
     this.Symbol;        //股票代码
-    this.DrawType=0;    // 0=实心K线柱子  1=收盘价线 2=美国线 3=空心K线柱子 4=收盘价面积图
+    this.DrawType=0;    // 0=solid candlestick bar 1=closing price line 2=US line 3=hollow candlestick bar 4=closing price area chart
     this.CloseLineColor=g_JSChartResource.CloseLineColor;
     this.CloseLineAreaColor=g_JSChartResource.CloseLineAreaColor;
     this.CloseLineWidth=g_JSChartResource.CloseLineWidth;
@@ -19269,7 +19269,7 @@ function ChartText()
     delete this.newMethod;
 
     this.ClassName='ChartText';    //类名
-    this.TextFont="14px 微软雅黑";
+    this.TextFont="14px sans-serif";
 
     this.Draw=function()
     {
@@ -19351,7 +19351,7 @@ function ChartSingleText()
 
     this.ClassName='ChartSingleText';    //类名
     this.Color="rgb(255,193,37)";           //线段颜色
-    this.TextFont="14px 微软雅黑";           //线段宽度
+    this.TextFont="14px sans-serif";           //线段宽度
     this.Text;
     this.TextAlign='left';
     this.Direction=0;       //0=middle 1=bottom 2=top
@@ -19794,7 +19794,7 @@ function ChartStraightArea()
 
     this.ClassName='ChartStraightArea';    //类名
     this.Color = "rgb(255,193,37)";   //线段颜色
-    this.Font ='11px 微软雅黑';
+    this.Font ='11px sans-serif';
 
     this.Draw = function () 
     {
@@ -23969,7 +23969,7 @@ function ChartRadar()
     this.Color='rgb(198,198,198)';
     this.AreaColor='rgba(242,154,118,0.4)';    //面积图颜色
     this.AreaLineColor='rgb(242,154,118)';
-    this.TitleFont=24*GetDevicePixelRatio()+'px 微软雅黑';
+    this.TitleFont=24*GetDevicePixelRatio()+'px sans-serif';
     this.TitleColor='rgb(102,102,102)';
     this.BGColor = ['rgb(255,255,255)', 'rgb(224,224,224)']//背景色
 
@@ -24915,7 +24915,7 @@ function StockInfoExtendChartPaint()
     this.Symbol;
     this.Name;
 
-    this.TitleFont=["14px 微软雅黑"];
+    this.TitleFont=["14px sans-serif"];
 
     this.Draw=function()
     {
@@ -25916,7 +25916,7 @@ function FrameSplitPaint()
     this.LineColor='rgb(255,0,0)';
     this.TextColor="rgb(255,0,0)";
     this.LineWidth=2;
-    this.Font='bold '+18*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font='bold '+18*GetDevicePixelRatio() +"px sans-serif";
     this.TextTopOffset=10*GetDevicePixelRatio();
 
     //设置参数接口
@@ -28685,7 +28685,7 @@ function FrameSplitY()
                 this.Frame.HorizontalInfo[i].Message[0]=this.Frame.HorizontalInfo[i].Message[1];
                 if (this.IsShowLeftText==false) this.Frame.HorizontalInfo[i].Message[0]=null;
                 if (this.IsShowRightText==false) this.Frame.HorizontalInfo[i].Message[1]=null;
-                //this.Frame.HorizontalInfo[i].Font="14px 微软雅黑";
+                //this.Frame.HorizontalInfo[i].Font="14px sans-serif";
                 //this.Frame.HorizontalInfo[i].TextColor="rgb(100,0,200)";
                 //this.Frame.HorizontalInfo[i].LineColor="rgb(220,220,220)";
             }
@@ -31129,7 +31129,7 @@ function ChartSplashPaint()
     this.Font=g_JSChartResource.DefaultTextFont;            //字体
     this.TextColor=g_JSChartResource.DefaultTextColor;      //文本颜色
     this.IsEnableSplash=false;
-    this.SplashTitle='数据加载中';
+    this.SplashTitle='Loading...';
     this.HQChart;
 
     this.EnableSplash=function(bEnable)
@@ -31603,7 +31603,7 @@ function HistoryDataStringFormat()
                 "<span class='tooltip-num' style='color:"+this.GetColor(data.Low,data.YClose)+";'>"+data.Low.toFixed(defaultfloatPrecision)+"</span><br/>"+
                 "<span class='tooltip-con'>"+g_JSChartLocalization.GetText('DivTooltip-Close',this.LanguageID)+"</span>"+
                 "<span class='tooltip-num' style='color:"+this.GetColor(data.Close,data.YClose)+";'>"+data.Close.toFixed(defaultfloatPrecision)+"</span><br/>"+
-                //"<span style='color:"+this.YClose+";font:微软雅黑;font-size:12px'>&nbsp;前收: "+IFrameSplitOperator.FormatValueString(data.YClose,2)+"</span><br/>"+
+                //"<span style='color:"+this.YClose+";font:sans-serif;font-size:12px'>&nbsp;前收: "+IFrameSplitOperator.FormatValueString(data.YClose,2)+"</span><br/>"+
                 "<span class='tooltip-con'>"+g_JSChartLocalization.GetText('DivTooltip-Vol',this.LanguageID)+"</span>"+
                 "<span class='tooltip-num' style='color:"+this.VolColor+";'>"+IFrameSplitOperator.FormatValueString(vol,2,this.LanguageID)+"</span><br/>"+
                 "<span class='tooltip-con'>"+g_JSChartLocalization.GetText('DivTooltip-Amount',this.LanguageID)+"</span>"+
@@ -31632,7 +31632,7 @@ function HistoryDataStringFormat()
             //叠加股票
             if (this.Value.ChartPaint.Name=="Overlay-KLine")
             {
-                var title="<span style='color:rgb(0,0,0);font:微软雅黑;font-size:12px;text-align:center;display: block;'>"+this.Value.ChartPaint.Title+"</span>";
+                var title="<span style='color:rgb(0,0,0);font:sans-serif;font-size:12px;text-align:center;display: block;'>"+this.Value.ChartPaint.Title+"</span>";
                 strText=title+strText;
                 ++this.LineCount;
             }
@@ -34452,7 +34452,7 @@ function ChartDrawPictureHorizontalLine()
     this.PointCount=1;
     this.ClassName='ChartDrawPictureHorizontalLine';
     this.IsPointIn=this.IsPointIn_XYValue_Line;
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
 
     this.Draw=function()
     {
@@ -35625,7 +35625,7 @@ function ChartDrawPictureText()
     this.ClassName='ChartDrawPictureText';
     this.Text='文本';
     this.PointCount=1;
-    this.FontOption={ Family:'微软雅黑', Size:20, Weight:null, Style:null };    //Weight(bold 粗体), Style(italic)
+    this.FontOption={ Family:'sans-serif', Size:20, Weight:null, Style:null };    //Weight(bold 粗体), Style(italic)
     //矢量图片
     //this.Text="\ue606";
     //this.FontOption={ Family:'iconfont', Size:20, Weight:null, Style:null };    //Weight(bold 粗体), Style(italic)
@@ -35679,7 +35679,7 @@ function ChartDrawPictureText()
     //根据设置动态生成字体
     this.GetTextFont=function()
     {
-        const defaultFont=16*GetDevicePixelRatio() +"px 微软雅黑";
+        const defaultFont=16*GetDevicePixelRatio() +"px sans-serif";
         if (!this.FontOption || !this.FontOption.Family || this.FontOption.Size<=0) return defaultFont;
 
         var font='';
@@ -35841,7 +35841,7 @@ function ChartDrawPictureGannFan()
     this.ClassName='ChartDrawPictureGannFan';
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.LinePoint=[];
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
 
 
     this.Draw=function()
@@ -36146,7 +36146,7 @@ function ChartDrawPictureGoldenSection()
 
     this.ClassName='ChartDrawPictureGoldenSectionLine';
     this.IsPointIn=this.IsPointIn_XYValue_Line;
-    this.Font=14*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=14*GetDevicePixelRatio() +"px sans-serif";
     
     this.GetSectionData=function()
     {
@@ -36326,7 +36326,7 @@ function ChartDrawPictureTriangle()
 
     this.ClassName='ChartDrawPictureTriangle';
     this.PointCount=3;
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.LastPoint;
 
@@ -36445,7 +36445,7 @@ function ChartDrawPictureSymmetryAngle()
 
     this.ClassName='ChartDrawPictureSymmetryAngle';
     this.PointCount=2;
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
     this.IsPointIn=this.IsPointIn_XYValue_Line;
 
     this.Draw=function()
@@ -36695,7 +36695,7 @@ function ChartDrawPictureFibonacci()
 
     this.ClassName='ChartDrawPictureFibonacci';
     this.PointCount=1;
-    this.Font=14*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=14*GetDevicePixelRatio() +"px sans-serif";
     this.IsPointIn=this.IsPointIn_XYValue_Line;
 
     this.Draw=function()
@@ -37153,7 +37153,7 @@ function ChartDrawRuler()
 
     this.ClassName='ChartDrawRuler';
     this.PointCount=2;
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.TitleColor=g_JSChartResource.ChartDrawRuler.TitleColor;
     this.IsHScreen=false;
@@ -37289,7 +37289,7 @@ function ChartDrawPriceLine()
     delete this.newMethod;
 
     this.ClassName='ChartDrawPriceLine';
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
     this.PointCount=1;
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.IsHScreen=false;
@@ -37374,7 +37374,7 @@ function ChartDrawPriceLineV2()
     delete this.newMethod;
 
     this.ClassName='ChartDrawPriceLineV2';
-    this.Font=12*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=12*GetDevicePixelRatio() +"px sans-serif";
     this.PointCount=1;
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.IsHScreen=false;
@@ -37565,7 +37565,7 @@ function ChartDrawWaveRuler()
 
     this.ClassName='ChartDrawWaveRuler';
     this.PointCount=3;
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.LastPoint;
     this.LinePoint;
@@ -37716,7 +37716,7 @@ function ChartDrawWaveRuler2Point()
 
     this.ClassName='ChartDrawWaveRuler2Point';
     this.PointCount=2;
-    this.Font=14*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=14*GetDevicePixelRatio() +"px sans-serif";
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.PointRate=[ 510, 517, 511.4];
     this.LinePoint;
@@ -37855,7 +37855,7 @@ function ChartDrawBox()
 
     this.ClassName='ChartDrawBox';
     this.PointCount=2;
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.IsHScreen=false;
     this.AvPriceLineDash=[5*GetDevicePixelRatio(),5*GetDevicePixelRatio()];
@@ -38076,7 +38076,7 @@ function ChartDrawTwoPointDemo()
 
     this.ClassName='ChartDrawTwoPointDemo';
     this.PointCount=2;
-    this.Font=16*GetDevicePixelRatio() +"px 微软雅黑";
+    this.Font=16*GetDevicePixelRatio() +"px sans-serif";
     this.IsPointIn=this.IsPointIn_XYValue_Line;
     this.IsHScreen=false;
     this.PointInfo=[];  //保存点及点对应K线的信息
@@ -38776,8 +38776,8 @@ function JSChartResource()
     };
 
     this.DefaultTextColor="rgb(43,54,69)";                          //图形中默认的字体颜色
-    this.DefaultTextFont=14*GetDevicePixelRatio() +'px 微软雅黑';    //图形中默认的字体
-    this.TitleFont=13*GetDevicePixelRatio() +'px 微软雅黑';          //指标显示,tooltip显示字体
+    this.DefaultTextFont=14*GetDevicePixelRatio() +'px sans-serif';    //图形中默认的字体
+    this.TitleFont=13*GetDevicePixelRatio() +'px sans-serif';          //指标显示,tooltip显示字体
     this.IndexTitleBGColor='rgb(217,219,220)';                      //指标名字背景色
     this.OverlayIndexTitleBGColor='rgba(255,255,255,0.7)';
 
@@ -38794,12 +38794,12 @@ function JSChartResource()
         PositionColor:"rgb(43,54,69)"       //持仓
     };
 
-    this.UpTextColor="rgb(238,21,21)";      //上涨文字颜色
-    this.DownTextColor="rgb(25,158,0)";     //下跌文字颜色
-    this.UnchagneTextColor="rgb(0,0,0)";    //平盘文字颜色 
-    this.CloseLineColor='rgb(0,191,255)';   //收盘价线颜色
-    this.CloseLineAreaColor=['rgba(0,191,255,0.8)','rgba(0,191,255,0.2)'];  //收盘价面积图颜色
-    this.CloseLineWidth=2;  //收盘价面积图颜色线段宽度
+    this.UpTextColor="rgb(238,21,21)"; //Up text color
+    this.DownTextColor="rgb(25,158,0)"; //Down text color
+    this.UnchagneTextColor="rgb(0,0,0)"; //Flat text color
+    this.CloseLineColor='rgb(0,191,255)'; //Close price line color
+    this.CloseLineAreaColor=['rgba(0,191,255,0.8)','rgba(0,191,255,0.2)']; //Close price area chart color
+    this.CloseLineWidth=2; //The width of the color line segment of the closing price area chart
 
     this.FrameBorderPen="rgb(225,236,242)";         //边框颜色
     this.FrameSplitPen="rgb(225,236,242)";          //刻度分割线
@@ -38807,7 +38807,7 @@ function JSChartResource()
     this.FrameYLineDash= null; //[5*GetDevicePixelRatio(), 5*GetDevicePixelRatio()];                     //Y轴线段虚线点间距,填null 就是实线
     this.FrameXLineDash= null; //[5*GetDevicePixelRatio(), 5*GetDevicePixelRatio()];                   //X轴线段虚线点间距,填null 就是实线
     this.FrameSplitTextColor="rgb(117,125,129)";    //刻度文字颜色
-    this.FrameSplitTextFont=14*GetDevicePixelRatio() +"px 微软雅黑";            //坐标刻度文字字体
+    this.FrameSplitTextFont=14*GetDevicePixelRatio() +"px sans-serif";            //坐标刻度文字字体
     this.FrameTitleBGColor="rgb(246,251,253)";  //标题栏背景色
     this.Frame={ 
         XBottomOffset:1*GetDevicePixelRatio(),  //X轴文字向下偏移
@@ -38819,12 +38819,12 @@ function JSChartResource()
         PriceColor:'rgb(117,125,129)', 
         PercentageColor:"rgb(117,125,129)", 
         SplitColor:"rgb(117,125,129)",
-        Font:14*GetDevicePixelRatio() +"px 微软雅黑"
+        Font:14*GetDevicePixelRatio() +"px sans-serif"
     };
 
     //对数坐标
     this.FrameLogarithmic= {
-        OpenPriceFont: "bold "+14*GetDevicePixelRatio() +"px 微软雅黑",     //开盘价刻度文字字体
+        OpenPriceFont: "bold "+14*GetDevicePixelRatio() +"px sans-serif",     //开盘价刻度文字字体
         MinInterval: 45*GetDevicePixelRatio()       //刻度最小间距
     };  
 
@@ -38871,7 +38871,7 @@ function JSChartResource()
 
     this.CorssCursorBGColor="rgb(43,54,69)";            //十字光标背景
     this.CorssCursorTextColor="rgb(255,255,255)";       //十字光文字颜色
-    this.CorssCursorTextFont=14*GetDevicePixelRatio() +"px 微软雅黑";
+    this.CorssCursorTextFont=14*GetDevicePixelRatio() +"px sans-serif";
     this.CorssCursorHPenColor="rgb(130,130,130)";          //十字光标线段颜色(水平)
     this.CorssCursorVPenColor="rgb(130,130,130)";          //十字光标线段颜色(垂直)
     this.CorssCursorXRangeBGColor="rgba(100,149,237,0.3)";  //十字光标X轴访问背景色
@@ -38894,7 +38894,7 @@ function JSChartResource()
     this.PyIndexDomain='https://py.zealink.com';                //py指标计算域名
 
     this.KLine={
-            MaxMin: {Font:12*GetDevicePixelRatio() +'px 微软雅黑',Color:'rgb(43,54,69)', RightArrow:"→", LeftArrow:"←", HighYOffset:0, LowYOffset:0},   //K线最大最小值显示
+            MaxMin: {Font:12*GetDevicePixelRatio() +'px sans-serif',Color:'rgb(43,54,69)', RightArrow:"→", LeftArrow:"←", HighYOffset:0, LowYOffset:0},   //K线最大最小值显示
             Info:  //信息地雷
             {
                 Investor:
@@ -38997,7 +38997,7 @@ function JSChartResource()
     this.Index.CustomIndexHeatApiUrl="https://opensource.zealink.com/API/QuadrantCalculate";
 
     //指标不支持信息
-    this.Index.NotSupport={Font:"14px 微软雅黑", TextColor:"rgb(52,52,52)"};
+    this.Index.NotSupport={Font:"14px sans-serif", TextColor:"rgb(52,52,52)"};
 
     //画图工具
     this.DrawPicture={};
@@ -39031,7 +39031,7 @@ function JSChartResource()
         BGColor:'rgba(250,250,250,0.8)',    //背景色
         BorderColor:'rgb(120,120,120)',     //边框颜色
         TitleColor:'rgb(120,120,120)',       //标题颜色
-        TitleFont:13*GetDevicePixelRatio() +'px 微软雅黑',   //字体
+        TitleFont:13*GetDevicePixelRatio() +'px sans-serif',   //字体
         DateTimeColor:'rgb(210,210,210)',
         VolColor:"rgb(210,210,210)",       //标题成交量
         AmountColor:"rgb(210,210,210)",    //成交金额
@@ -39043,7 +39043,7 @@ function JSChartResource()
 
     //弹幕
     this.Barrage= {
-        Font:16*GetDevicePixelRatio() +'px 微软雅黑',   //字体
+        Font:16*GetDevicePixelRatio() +'px sans-serif',   //字体
         Height:20,
         Color:'RGB(109,109,109)'
     }
@@ -39051,7 +39051,7 @@ function JSChartResource()
     //走势图 信息地雷
     this.MinuteInfo={
         TextColor: 'rgb(84,143,255)',
-        Font: 14*GetDevicePixelRatio() +'px 微软雅黑',
+        Font: 14*GetDevicePixelRatio() +'px sans-serif',
         PointColor:'rgb(38,113,254)',
         LineColor:'rgb(120,167,255)',
         TextBGColor:'rgba(255,255,255,0.8)'
@@ -39069,7 +39069,7 @@ function JSChartResource()
         RulerWidth:10,          //刻度尺长度
         RulerLineWidth:1,       //刻度线粗细
         MaxScaleRuler:2,       //尺子最大的高度比
-        Font:14*GetDevicePixelRatio() +"px 微软雅黑",
+        Font:14*GetDevicePixelRatio() +"px sans-serif",
         ScaleRuler:
         [
             {Value:0, Text:"0.0%"}, { Value:0.382, Text:"38.2%" }, { Value:0.618, Text:"61.8%" } ,{ Value:1, Text:"100%"},
@@ -39082,7 +39082,7 @@ function JSChartResource()
         RulerWidth:20,          //刻度尺长度
         RulerLineWidth:1,       //刻度线粗细
         MaxScaleRuler:2,        //尺子最大的高度比
-        Font:14*GetDevicePixelRatio() +"px 微软雅黑",
+        Font:14*GetDevicePixelRatio() +"px sans-serif",
         ScaleRuler:
         [
             {Value:0, Text:"base"},  { Value:0.618, Text:"61.8%" } ,{ Value:1, Text:"100%"},
@@ -39135,7 +39135,7 @@ function JSChartResource()
             Value:1
         },
 
-        FontName:'微软雅黑'    //字体
+        FontName:'sans-serif'    //字体
     }
 
     this.DRAWNUMBER=
@@ -39150,7 +39150,7 @@ function JSChartResource()
             Value:1
         },
 
-        FontName:'微软雅黑'    //字体
+        FontName:'sans-serif'    //字体
     }
 
     this.DRAWABOVE=
@@ -39158,8 +39158,8 @@ function JSChartResource()
         YOffset:0   //y坐标向上偏移
     }
 
-    this.DRAWTEXT_FIX={ Font:14*GetDevicePixelRatio() +'px 微软雅黑' }
-    this.DRAWNUMBER_FIX={ Font:14*GetDevicePixelRatio() +'px 微软雅黑' }
+    this.DRAWTEXT_FIX={ Font:14*GetDevicePixelRatio() +'px sans-serif' }
+    this.DRAWNUMBER_FIX={ Font:14*GetDevicePixelRatio() +'px sans-serif' }
 
     //虚线配置
     this.DOTLINE=
@@ -39207,7 +39207,7 @@ function JSChartResource()
         { 
             BGColor:'rgba(236,240,245, 0.8)', TextColor:"rgb(130,140,151)",
             Border:{ Top:5, Left:20, Bottom:5, Center: 5},
-            Font:14*GetDevicePixelRatio() +"px 微软雅黑",
+            Font:14*GetDevicePixelRatio() +"px sans-serif",
             LineHeight:16   //单行高度
         }
     }
@@ -41200,7 +41200,7 @@ function KLineChartContainer(uielement,OffscreenElement)
                 if (i==0 && j==frame.HorizontalMin) continue;
 
                 frame.HorizontalInfo[j].Message[1]=j.toString();
-                frame.HorizontalInfo[j].Font="14px 微软雅黑";
+                frame.HorizontalInfo[j].Font="14px sans-serif";
             }
 
             var subFrame=new SubFrameItem();
@@ -41250,7 +41250,7 @@ function KLineChartContainer(uielement,OffscreenElement)
             frame.HorizontalInfo[j]= new CoordinateInfo();
             frame.HorizontalInfo[j].Value=j;
             frame.HorizontalInfo[j].Message[1]=j.toString();
-            frame.HorizontalInfo[j].Font="14px 微软雅黑";
+            frame.HorizontalInfo[j].Font="14px sans-serif";
         }
 
         var subFrame=new SubFrameItem();
@@ -46963,7 +46963,7 @@ function MinuteChartContainer(uielement)
                 if (i==0 && j==frame.HorizontalMin) continue;
 
                 frame.HorizontalInfo[j].Message[1]=DEFAULT_HORIZONTAL[j].toString();
-                frame.HorizontalInfo[j].Font="14px 微软雅黑";
+                frame.HorizontalInfo[j].Font="14px sans-serif";
             }
 
             var subFrame=new SubFrameItem();
@@ -47020,7 +47020,7 @@ function MinuteChartContainer(uielement)
             frame.HorizontalInfo[j]= new CoordinateInfo();
             frame.HorizontalInfo[j].Value=DEFAULT_HORIZONTAL[j];
             frame.HorizontalInfo[j].Message[1]=DEFAULT_HORIZONTAL[j].toString();
-            frame.HorizontalInfo[j].Font="14px 微软雅黑";
+            frame.HorizontalInfo[j].Font="14px sans-serif";
         }
 
         var subFrame=new SubFrameItem();
@@ -50616,7 +50616,7 @@ function KLineChartHScreenContainer(uielement)
                 if (i==0 && j==frame.HorizontalMin) continue;
 
                 frame.HorizontalInfo[j].Message[1]=j.toString();
-                frame.HorizontalInfo[j].Font="14px 微软雅黑";
+                frame.HorizontalInfo[j].Font="14px sans-serif";
             }
 
             var subFrame=new SubFrameItem();
@@ -50753,7 +50753,7 @@ function MinuteChartHScreenContainer(uielement)
                 if (i==0 && j==frame.HorizontalMin) continue;
 
                 frame.HorizontalInfo[j].Message[1]=DEFAULT_HORIZONTAL[j].toString();
-                frame.HorizontalInfo[j].Font="14px 微软雅黑";
+                frame.HorizontalInfo[j].Font="14px sans-serif";
             }
 
             var subFrame=new SubFrameItem();
@@ -57170,7 +57170,7 @@ function ChartPictureTextSettingMenu(divElement)
                                 '</div>';
                             
         var fontSizeArray = [10,11,12,14,16,20,24,28,32,40];
-        var fontArray = ['微软雅黑','宋体','Arial','仿宋'];
+        var fontArray = ['sans-serif','宋体','Arial','仿宋'];
         var sizeListStr = "";
         var fontListStr = "";
         fontArray.forEach(function(item,index){
@@ -57182,7 +57182,7 @@ function ChartPictureTextSettingMenu(divElement)
         var contentContainerStr = '<div class="contentWrap">'+
                                     '<div class="styleOptions">'+
                                         '<span class="colorPicker"><input type="color" id="fontColor" value="#1e90ff"></span>'+
-                                        '<div class="likeSelect fontSelect"><span class="choicedText">微软雅黑</span><div class="selectList">'+fontListStr+'</div><i class="iconfont icon-xia"></i></div>'+
+                                        '<div class="likeSelect fontSelect"><span class="choicedText">sans-serif</span><div class="selectList">'+fontListStr+'</div><i class="iconfont icon-xia"></i></div>'+
                                         '<div class="likeSelect fontSizeSelect"><span class="choicedText">20</span><div class="selectList">'+sizeListStr+'</div><i class="iconfont icon-xia"></i></div>'+
                                         '<span class="strongFont likeBtn"><i class="iconfont icon-jiacu"></i></span>'+
                                         '<span class="italicsFont likeBtn"><i class="iconfont icon-qingxieL"></i></span>'+
@@ -57237,7 +57237,7 @@ function ChartPictureTextSettingMenu(divElement)
         var text = this.ChartPicture.Text;
         $('.chartpicture-text-setting .tArea').val(text);  //结束初始设置
 
-        var defaultTextOption = { Family:'微软雅黑', Size:20, Weight:null, Style:null };
+        var defaultTextOption = { Family:'sans-serif', Size:20, Weight:null, Style:null };
         $(".chartpicture-text-setting #fontColor").change(
             {
                 Picture:this.ChartPicture

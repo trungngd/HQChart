@@ -55,7 +55,7 @@ html,body{
     border-bottom: 1px solid #c8d2db;
 }
 .parameter-header span{
-    font-family: 微软雅黑;
+    font-family: sans-serif;
     font-size: 14px;
     margin-left: 10px;
 }
@@ -136,7 +136,7 @@ html,body{
     border-bottom: 1px solid #c8d2db;
 }
 .target-header span{
-    font-family: 微软雅黑;
+    font-family: sans-serif;
     font-size: 14px;
     margin-left: 10px;
 }

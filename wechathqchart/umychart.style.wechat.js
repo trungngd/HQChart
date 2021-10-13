@@ -19,8 +19,8 @@ var BLACK_STYLE =    //黑色风格
     SelectRectBGColor: "rgba(1,130,212,0.06)", //背景色
     //  SelectRectAlpha: 0.06;                  //透明度
 
-    UpBarColor: "rgb(238,21,21)",
-    DownBarColor: "rgb(25,158,0)",
+    UpBarColor: "#00C8BC",
+    DownBarColor: "#E5544B",
     UnchagneBarColor: "rgb(199,199,199)",
 
     Minute: {
@@ -65,8 +65,8 @@ var BLACK_STYLE =    //黑色风格
 
     FrameLatestPrice: {
         TextColor: 'rgb(255,255,255)',   //最新价格文字颜色
-        UpBarColor: "rgb(238,21,21)",    //上涨
-        DownBarColor: "rgb(25,158,0)",   //下跌
+        UpBarColor: "#00C8BC",    //上涨
+        DownBarColor: "#E5544B",   //下跌
         UnchagneBarColor: "rgb(190,190,190)",   //平盘
         BGAlpha: 0.6
     },
@@ -195,8 +195,8 @@ var WHITE_STYLE=    //白色风格
     SelectRectBGColor:"rgba(1,130,212,0.06)", //背景色
     //   this.SelectRectAlpha=0.06;                  //透明度
 
-    UpBarColor: "rgb(238,21,21)",
-    DownBarColor: "rgb(25,158,0)",
+    UpBarColor: "#00C8BC",
+    DownBarColor: "#E5544B",
     UnchagneBarColor: "rgb(0,0,0)",
 
     Minute:

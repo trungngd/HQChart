@@ -687,7 +687,7 @@ td.context-menu {
     border-bottom: 1px solid #c8d2db;
 }
 .parameter-header span{
-    font-family: 微软雅黑;
+    font-family: sans-serif;
     font-size: 14px;
     margin-left: 10px;
 }
@@ -768,7 +768,7 @@ td.context-menu {
     border-bottom: 1px solid #c8d2db;
 }
 .target-header span{
-    font-family: 微软雅黑;
+    font-family: sans-serif;
     font-size: 14px;
     margin-left: 10px;
 }
@@ -875,7 +875,7 @@ td.context-menu {
 /*tooltip的内层样式*/
 .tooltip-title{
     color:#2b3645;
-    font-family: 微软雅黑;
+    font-family: sans-serif;
     font-size:12px;
     text-align:center;
     display: block;
@@ -883,12 +883,12 @@ td.context-menu {
 }
 .tooltip-con{
     color:#2b3645;
-    font-family: 微软雅黑;
+    font-family: sans-serif;
     font-size:12px;
     line-height: 24px;
 }
 .tooltip-num{
-    font-family: 微软雅黑;
+    font-family: sans-serif;
     font-size:12px;
     line-height: 24px;
     text-align: right;

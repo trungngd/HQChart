@@ -1,31 +1,31 @@
-﻿注：
-jscommon目录是拷贝webhqchart目录的js文件， 因为git 不能使用svn:externals. 暂时提交的时候手动更新jscommon的文件。
+﻿Note:
+The jscommon directory is to copy the js files in the webhqchart directory, because git cannot use svn:externals. Manually update the jscommon files when submitting temporarily.
 (https://github.com/jones2000/HQChart.git/trunk/webhqchart => jscommon)
 
 
-demo/phone.html  页面行情(K线图) 支持手机适配
-demo/phone2.html 页面行情(走势图) 支持手机适配
-demo/phone3.html 页面行情(自定义指数)
+demo/phone.html page quotation (K-line chart) supports mobile phone adaptation
+demo/phone2.html page quotation (trend chart) supports mobile phone adaptation
+demo/phone3.html page quotation (custom index)
 
-demo/phone7.html  通达信脚本网页版(K线图)
-demo/phone8.html  通达信脚本网页版(走势图)
+demo/phone7.html Tongdaxin script web version (K-line diagram)
+demo/phone8.html Tongdaxin script web version (trend chart)
 
-demo/phone9.html  手机网页版(K线图横屏)
-demo/phone10.html  手机网页版(走势图横屏)
+demo/phone9.html mobile web version (K-line graph horizontal screen)
+demo/phone10.html mobile web version (trend chart horizontal screen)
 
-demo/phone11.html 通达信脚本网页版(历史走势图)
-demo/phone12.html 通达信脚本网页版(策略选股)  选股后台api使用node.jccomplier模块
+demo/phone11.html Tongdaxin script web version (historical trend chart)
+demo/phone12.html Tongdaxin script web version (strategic stock picking) Stock picking background api uses node.jccomplier module
 
-demo/phone13.html K线训练网页版
-demo/phone14.html K线训练手机版
+demo/phone13.html K-line training web version
+demo/phone14.html K-line training mobile version
 
-demo/phone15.html 多日走势图
-demo/phone18.html 移动筹码图
+demo/phone15.html Multi-day chart
+demo/phone18.html mobile chip chart
 
-demo/phone18.html 筹码分布(K线图)
-demo/phone21.html K线图弹幕
-demo/phone22.html 叠加指标页面行情(K线图)
-demo/phone23.html 概念异动(走势图)
-demo/phone24.html 分笔K线图
+demo/phone18.html Chip distribution (K-line chart)
+demo/phone21.html K-line chart barrage
+demo/phone22.html Overlay indicator page quotation (K-line chart)
+demo/phone23.html Concept Change (Chart)
+demo/phone24.html Pen K-line chart
 
-demo/et_minute.html 自定义品种分时图
+demo/et_minute.html Time-sharing chart of custom varieties
